@@ -29,9 +29,16 @@ function createGallaryItem(galleryItems) {
 }
 
 galleryContainer.addEventListener("click", onGalleryContainerClick);
-// event.preventDefault();
 
 function onGalleryContainerClick(e) {
-  console.log(e.target);
-  event.preventDefault();
+  if (!e.target.classList.contains("gallery__image")) {
+    return;
+  }
+
+  const instance = basicLightbox.create(`
+  	<img src="${e.target.dataset.source}">
+  `);
+
+  instance.show();
+  e.preventDefault();
 }
